@@ -1,7 +1,9 @@
-﻿"use strict";
+﻿//html과 연결 되어있는 프론트 창.
+
+"use strict";
 
 const id = document.querySelector("#id");
-const psword = document.querySelector("#psw");
+const psword = document.querySelector("#psw"); //DOM
 const loginbutton = document.querySelector("button");
 
 
@@ -18,7 +20,7 @@ function login() {
         headers: { //내가 전달하는 데이터가 json이라는걸 헤더로 표현 가능
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(req)
-    });
+        body: JSON.stringify(req) //js 객체를 json 객체로 변환
+    }).then((res) => res.json()).then((res) => console.log(res));
 
 }
