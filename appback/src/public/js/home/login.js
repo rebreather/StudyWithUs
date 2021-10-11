@@ -1,7 +1,5 @@
 ﻿"use strict";
 
-const { post } = require("../../../routes/home");
-
 const id = document.querySelector("#id");
 const psword = document.querySelector("#psw");
 const loginbutton = document.querySelector("button");
@@ -18,7 +16,7 @@ function login() {
     fetch("/login", {
         method: "POST",
         headers: { //내가 전달하는 데이터가 json이라는걸 헤더로 표현 가능
-            "Content-Type": "application/json",
+            "Content-Type": "application/json"
         },
         body: JSON.stringify(req)
     });
