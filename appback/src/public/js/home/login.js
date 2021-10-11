@@ -21,6 +21,16 @@ function login() {
             "Content-Type": "application/json"
         },
         body: JSON.stringify(req) //js 객체를 json 객체로 변환
-    }).then((res) => res.json()).then((res) => console.log(res));
+    }).then((res) => res.json()).then((res) => {
+        if (res.success) {
+            location.href = "/"; //로그인에 성공했을 때 메인 페이지로 이동.
+        }
+        else {
+            alert(res.msg); //로그인에 실패 했을 때 알림창 뜸.
+        }
+    })
+    .catch((err) => {
+        console.error(new Error("로그인 중 에러 발생"));
+    });
 
 }
