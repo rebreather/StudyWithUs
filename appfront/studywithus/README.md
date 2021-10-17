@@ -1,3 +1,8 @@
+### 211018까지 진행 내용
+class 대신 classname (p.72)
+If 대신 조건부 렌더링
+Front 환경 세팅 
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
