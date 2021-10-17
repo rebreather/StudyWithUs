@@ -20,6 +20,19 @@ class UserStorage {
         return newUsers;
     }
 
+    static getUserInfo(id){
+        const users = this.#users;
+        const idx = users.id.indexOf(id);
+        const userKeys = Object.keys(users); // 상단의 users를 getUserInfo의 users로 받아옴
+          // => [id, psword, name] 이거를 밑줄의 userKeys로 넣음
+        const userInfo = userKeys.reduce((newUser, info) => {
+            newUser[info] = users[info][idx];
+            return newUser;
+        }, {});
+
+        return userInfo;
+    }
+
 }
 
 module.exports = UserStorage;
