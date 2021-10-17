@@ -1,10 +1,11 @@
 import React from 'react';
+import './App.css';
 
 function App(){
-  const name = '리트';
+  const name = 'Welcome!';
   return (
-    <div>
-      {name === '리액트' ? (<h2>리액트 맞습니다.</h2>) : null}
+    <div className = "react">
+      {name}
     </div>
   );
 }
