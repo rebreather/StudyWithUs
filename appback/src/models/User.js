@@ -24,7 +24,7 @@ class User {
 
     register() {
         const client = this.body;
-        UserStorage.save(client) //데이터가 저장되도록
+        const response = UserStorage.save(client) //데이터가 저장되도록
         return response;
     }
 
