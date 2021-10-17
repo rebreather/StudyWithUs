@@ -12,11 +12,14 @@ const registerbutton = document.querySelector("#button");
 registerbutton.addEventListener("click", register);
 
 function register() {
+    if(!id.value) return alert("아이디를 입력해 주십시오.");
+    if(!name.value) return alert("이름을 입력해 주십시오.");
+    if (psword !== confirmpsword) return alert("비밀번호가 일치하지 않습니다.");
+    
     const req = {
         id: id.value, //register.ejs 파일 안에 있는 id값에 const 변수에 담긴 객체를 보여줌.
         psw: psword.value,
         name: name.value,
-        confirmpsword: confirmpsword.value
     };   
     console.log(req);
 
