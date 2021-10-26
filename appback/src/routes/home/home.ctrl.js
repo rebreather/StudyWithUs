@@ -5,7 +5,7 @@ const User = require("../../models/User");
 
 const output = {
     hello: (req, res) => {
-        res.render("home/index");
+        res.render("home/index"); // ../../../appfront/studywithus/src/App
     },
     login: (req, res) => {
         res.render("home/login");
