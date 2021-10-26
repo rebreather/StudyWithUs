@@ -12,6 +12,7 @@ const home = require("./src/routes/home/index.js");
 
 // 앱 세팅
 app.set("views", "./src/views"); // 템플릿이 있는 디렉토리
+//app.set("views", "../appfront/studywithus/src/views");
 app.set("view engine", "ejs"); //사용할 템플릿 엔진
 app.use(express.static(`${__dirname}/src/public`));
 app.use(bodyParser.json());
