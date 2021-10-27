@@ -12,6 +12,9 @@ router.post("/login", ctr.process.login);
 router.get("/register", ctr.output.register);
 router.post("/register", ctr.process.register);
 
+router.get("/main", ctr.output.main);
+//router.post("/main", ctr.process.main);
+
 
 //외부에서 이 파일을 사용하도록 함.
 module.exports = router; //외부로 내보내기

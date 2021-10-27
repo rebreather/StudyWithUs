@@ -23,7 +23,7 @@ function login() {
         body: JSON.stringify(req) //js 객체를 json 객체로 변환
     }).then((res) => res.json()).then((res) => {
         if (res.success) {
-            location.href = "/"; //로그인에 성공했을 때 메인 페이지로 이동.
+            location.href = "/main"; //로그인에 성공했을 때 메인 페이지로 이동.
         }
         else {
             alert(res.msg); //로그인에 실패 했을 때 알림창 뜸.
