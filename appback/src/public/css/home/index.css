@@ -1,0 +1,96 @@
+﻿body {
+	font-family: 'Sintony', sans-serif;
+	color: #e5e5e5;
+	font-size: 12px;
+    text-align: center; 
+	background: -webkit-linear-gradient(right, #E5E8E1, #9FB8B4); /*백그라운드 배경*/
+	background: -moz-linear-gradient(right, #e5e8e1, #9fb8b4); /*오른쪽 색상이 왼쪽색상으로 그라데이션*/
+	background: -o-linear-gradient(right, #E5E8E1, #9FB8B4);
+	background: linear-gradient(to left, #E5E8E1, #9FB8B4);
+	line-height: 1;
+}
+.box {
+    margin-top: 100px;
+    text-align: center;
+}
+.container {
+    padding: 2em;
+  }
+  
+button{
+    position: relative;
+    border: none;
+    outline:none;
+    cursor: pointer;
+    background: #809692;
+    color: white;
+    padding: 18px 60px;
+    border-radius: 2px;
+    font-size: 22px;
+}
+/* BUTTON 1 */
+.btn-1::after {
+    height: 0;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+  
+  .btn-1:hover:after {
+    height: 100%;
+  }
+  
+  /* BUTTON 2 */
+  .btn-2::after {
+    height: 100%;
+    left: 0;
+    top: 0;
+    width: 0;
+  }
+  
+  .btn-2:hover:after {
+    width: 100%;
+  }
+
+.fab{
+    border-radius: 50%;
+    margin:0;
+    padding: 20px;
+  }
+  
+  .material{
+    position:relative;
+    color:white;
+    margin: 20px auto;
+    height:400px;
+    width:500px;
+    background:#f45673;
+    
+  }
+  
+  .ripple{
+    overflow:hidden;
+  }
+  
+  .ripple-effect{
+    position: absolute;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    background: white;
+  
+      
+    animation: ripple-animation 2s;
+  }
+  
+  
+  @keyframes ripple-animation {
+      from {
+        transform: scale(1);
+        opacity: 0.4;
+      }
+      to {
+        transform: scale(100);
+        opacity: 0;
+      }
+  }
