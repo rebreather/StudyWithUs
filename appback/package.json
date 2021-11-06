@@ -15,8 +15,9 @@
   "scripts": {
     "start": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "front": "cd.. && cd appfront && cd studywithus && npm start",
-    "dev": "concurrently --kill-others-on-fail \"npm app\" \"npm front\""
+    "front": "cd front && yarn start",
+    "server": "nodemon --exec node app.js",
+    "dev": "concurrently --kill-others-on-fail \"npm run front\" \"npm run server\""
   },
   "author": "",
   "license": "ISC",

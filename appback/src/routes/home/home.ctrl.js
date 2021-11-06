@@ -15,6 +15,12 @@ const output = {
     },
     main: (req,res) => {
         res.render("home/main");
+    },
+    qna: (req,res) => {
+        res.render("home/qna");
+    },
+    schedules: (req,res) => {
+        res.render("home/schedules");
     }
 };
 
