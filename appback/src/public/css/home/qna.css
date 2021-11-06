@@ -81,6 +81,26 @@ nav.menu {
 	min-height: 45px;
 	height: 100%;
 }
+.menu > ul > li {
+	list-style: none;
+	display: inline-block;
+	color: #fff;
+	line-height: 45px;
+	
+}
+.menu > ul li a, .xs-menu li a {
+	text-decoration: none;
+	color: #fff;
+	 display:block;
+	 padding: 0px 24px;
+}
+.menu > ul li a:hover {
+	background:#444;
+	color: #fff;
+	transition-duration: 0.3s;
+	-moz-transition-duration: 0.3s;
+	-webkit-transition-duration: 0.3s;
+}
 .active{
 	background:#444 !important;
 }
@@ -122,21 +142,20 @@ nav.menu {
   position: relative;
   list-style: none;
   padding: 0;
-
 }
 #timeline a {
 text-decoration: none;
-
 }
- #timeline:after {
-    content: "";
-    width: 1px;
-    background: 1px #e6e7e9;
-    height: 90%;
-    position: absolute;
-    top: 3em;
-    left: 3em;
-    z-index: 0; }
+#timeline:after {
+  content: "";
+  width: 1px;
+  background: 1px #e6e7e9;
+  height: 90%;
+  position: absolute;
+  top: 3em;
+  left: 3em;
+  z-index: 0;
+}
 #timeline .listing{
   background-color: white;
   border: 1px solid #e6e7e9;
@@ -148,20 +167,16 @@ text-decoration: none;
   display: table;
   width: 100%;
   transition: all .3s ease-in-out;
-
-
 }
 .listing:hover{
   cursor: pointer;
   box-shadow: 0px 2px 40px 0 rgba(0,0,0,0.1);
-
 }
-#timeline .listing img,.info,.job_type{
+#timeline .listing img, .info, .job_type{
   display: table-cell;
   vertical-align: middle;
   font-size: 0.9em;
   color: #74718f;
-
 }
 #timeline .image_wrapper{
   width: 60px;
@@ -211,7 +226,6 @@ text-decoration: none;
 }
 .full_time{
   color: #fd7576;
-
 }
 .full_time:before{
 background-color:#fd7576;
@@ -225,14 +239,12 @@ background-color:#fec85d;
 }
 .freelance{
   color: #4db8de;
-
 }
 .freelance:before{
 background-color:#4db8de;
 }
 .contract{
   color: #a378fc;
-
 }
 .contract:before{
 background-color:#a378fc;
@@ -254,9 +266,8 @@ background-color:#a378fc;
 }
 .load_more{
   text-align: center;
-
 }
-.button{
+.button{ /*load more 버튼*/
   border : 2px solid #a378fc;
   outline: none;
   padding: 1em 3.5em;
@@ -266,40 +277,33 @@ background-color:#a378fc;
   color: #a378fc;
   transition:all .3s ease-in-out;
 }
-.button:hover{
- background-color: #a378fc;
+.button:hover{ /*버튼에 마우스 포인터 올라갔을 때 효과*/
+  background-color: #a378fc;
   color: white;
-
 }
 @media only screen and (max-width: 768px){
-  .main_header{
-  margin: 3em 0;
-}
-.logo{
-   display: block;
-  text-align: center;
-}
-.logo img {
-  
+    .main_header{
+    margin: 3em 0;
+  }
+  .logo{
+    display: block;
+    text-align: center;
+  }
+  .logo img {
+      float: none;
+  }
+  .logo h1{
     float: none;
-
-}
-.logo h1{
-  float: none;
-  margin: 0 auto;
-  text-transform: uppercase;
-  font-size: 1.1em;
- 
-
-}
-.nav{
-  float:none;
-  text-align: center;
-
-}
-.nav a {
-  margin: 0 .5em;
-  text-decoration: none;
-}
-
+    margin: 0 auto;
+    text-transform: uppercase;
+    font-size: 1.1em;
+  }
+  .nav{
+    float:none;
+    text-align: center;
+  }
+  .nav a {
+    margin: 0 .5em;
+    text-decoration: none;
+  }
 }
