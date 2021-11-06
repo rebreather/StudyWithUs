@@ -267,7 +267,12 @@ background-color:#a378fc;
 .load_more{
   text-align: center;
 }
+.write{
+  text-align: center;
+  margin: auto;
+}
 .button{ /*load more 버튼*/
+  margin: auto;
   border : 2px solid #a378fc;
   outline: none;
   padding: 1em 3.5em;
