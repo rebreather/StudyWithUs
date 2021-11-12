@@ -17,8 +17,11 @@ router.get("/main", ctr.output.main);
 
 router.get("/qna", ctr.output.qna);
 
+router.get("/write", ctr.output.write);
+router.post("/write", ctr.process.write);
 
-router.get("/schedules", ctr.output.schedules);
+
+//router.get("/schedules", ctr.output.schedules);
 
 
 //외부에서 이 파일을 사용하도록 함.
