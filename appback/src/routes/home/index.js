@@ -15,9 +15,9 @@ router.post("/register", ctr.process.register);
 router.get("/main", ctr.output.main);
 //router.post("/main", ctr.process.main);
 
-router.get("/qna", ctr.output.qna);
+router.get("/qna", ctr.output.qna); //qna 메뉴
 
-router.get("/write", ctr.output.write);
+router.get("/write", ctr.output.write); //글쓰기 페이지
 router.post("/write", ctr.process.write);
 
 

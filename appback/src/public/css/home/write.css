@@ -1,1 +1,52 @@
-﻿
+﻿body {
+    /*font-family: 'Sintony', sans-serif;*/
+	color: #5a5a5a;
+	/* font-size: 12px; */
+	background: -webkit-linear-gradient(right, #E5E8E1, #9FB8B4); /*백그라운드 배경*/
+	background: -moz-linear-gradient(right, #e5e8e1, #9fb8b4); /*오른쪽 색상이 왼쪽색상으로 그라데이션*/
+	background: -o-linear-gradient(right, #E5E8E1, #9FB8B4);
+	background: linear-gradient(to left, #E5E8E1, #9FB8B4);
+}
+  
+.forest-text{ /*Create a Question */
+    color: #5a5a5a;
+    text-align: center;
+}
+
+/* .btn-light{
+background-color: #a378fc;
+color: #fff;
+border: none;
+} */
+
+.form {
+width: 100%;
+max-width: 600px;
+padding: 10px;
+margin: 0 auto;
+}
+
+.form-group {
+    
+}
+
+.container {
+    padding:10px;
+    margin:25px 100px 100px;
+    -webkit-border-radius:15px;
+    background-color: white;
+}
+
+.button{ /* submit 버튼*/
+    margin: auto;
+    border : 2px solid #a378fc;
+    outline: none;
+    padding: 1em 3.5em;
+    text-align: center;
+    background: transparent;
+    border-radius: 3em;
+    color: #a378fc;
+    transition:all .3s ease-in-out;
+  }
+  
+  

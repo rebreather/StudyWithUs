@@ -2,7 +2,7 @@
 
 const db = require("../config/db");
 
-class QuesionStorage { 
+class QuestionStorage { 
     
     // static getUserInfo(id){
     //     return new Promise((resolve, reject) => {
@@ -17,7 +17,7 @@ class QuesionStorage {
     static async save(questionInfo){
         return new Promise((resolve, reject) => {
             const query = "INSERT INTO users(id, content) values(?, ?);";
-            db.query(query, [questionInfo.id, questionInfo.content], (err) => {
+            db.query(query, [questionInfo.id, questionInfo.content], (err) => { //아이디, 내용, 날짜
                 if (err)
                     reject(`${err}`);
                 resolve({success: true});

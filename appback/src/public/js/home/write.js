@@ -3,6 +3,7 @@
 "use strict";
 
 const id = document.querySelector("#id");
+const id = document.querySelector("#title");
 const submitbutton = document.querySelector("#button");
 const content = document.querySelector("#content");
 
