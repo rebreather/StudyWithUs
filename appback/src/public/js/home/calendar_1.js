@@ -8,6 +8,9 @@ var leapYear=[31,29,31,30,31,30,31,31,30,31,30,31];
 var notLeapYear=[31,28,31,30,31,30,31,31,30,31,30,31];
 var pageFirst = first;
 var pageYear;
+var mainTodayDay = document.querySelector('.main-day');
+var mainTodayDate = document.querySelector('.main-date');
+
 // 윤년 체크
 if(first.getFullYear() % 4 === 0){
     // 윤년일 경우
@@ -38,6 +41,10 @@ function showCalendar(){
         monthCnt++;
         calendarBody.appendChild($tr);
     }
+
+    currentTitle.innerHTML = monthList[first.getMonth()] + '&nbsp;&nbsp;&nbsp;&nbsp;'+ first.getFullYear();
+    mainTodayDay.innerHTML = dayList[today.getDay()];
+    mainTodayDate.innerHTML = today.getDate();
 }
 
 showCalendar();
@@ -120,8 +127,7 @@ function next(){
 }
 // ================
 
-var mainTodayDay = document.querySelector('main-day');
-var mainTodayDate = document.querySelector('main-date');
+
 
 function showMain(){
     mainTodayDay.innerHTML = dayList[today.getDay()];
@@ -216,7 +222,7 @@ var inputList = document.getElementById('input-list');
 var delText = 'X';
 inputDate.addEventListener('click',addTodoList);
 var dataCnt = 1;
-var keyValue = today.getFullYear() + '' + today.getMonth()+ '' + today.getDate();
+var keyValue = today.getFullYear() + '' + today.getMonth()+1+ '' + today.getDate();
 let todoList = [];
 todoList[keyValue] = [];
 function addTodoList(){
