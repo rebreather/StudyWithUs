@@ -13,10 +13,7 @@ const output = {
     register: (req,res) => {
         res.render("home/register");
     },
-    main: (req,res) => {
-        res.render("home/main");
-    },
-    qna: (req,res) => {
+    qna: (req, res) => {
         res.render("home/qna");
     },
     schedules: (req,res) => {

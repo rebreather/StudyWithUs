@@ -2,22 +2,13 @@
 
 const db = require("../config/db");
 
+
 class QuestionStorage { 
-    
-    // static getUserInfo(id){
-    //     return new Promise((resolve, reject) => {
-    //         const query = "SELECT * FROM users WHERE id = ?;";
-    //         db.query(query, [id], (err, data) => {
-    //             if (err) reject(`${err}`);
-    //             resolve(data[0]);
-    //         });
-    //     });        
-    // }
 
     static async save(questionInfo){
         return new Promise((resolve, reject) => {
-            const query = "INSERT INTO users(id, content) values(?, ?);";
-            db.query(query, [questionInfo.id, questionInfo.content], (err) => { //아이디, 내용, 날짜
+            const query = "INSERT INTO question(title, name, description) values(?, ?, ?);";
+            db.query(query, [questionInfo.title, questionInfo.name, questionInfo.description], (err) => { //아이디, 이름, 내용
                 if (err)
                     reject(`${err}`);
                 resolve({success: true});
@@ -26,5 +17,6 @@ class QuestionStorage {
     }
 
 }
+
 
 module.exports = QuestionStorage;

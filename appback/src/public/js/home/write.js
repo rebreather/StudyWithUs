@@ -2,17 +2,23 @@
 
 "use strict";
 
-const id = document.querySelector("#id");
-const id = document.querySelector("#title");
+const title = document.querySelector("#title");
+const name = document.querySelector("#name");
+const description = document.querySelector("#description");
 const submitbutton = document.querySelector("#button");
-const content = document.querySelector("#content");
 
 submitbutton.addEventListener("click", write);
 
 function write() {
+    if(!title.value) return alert("제목을 입력해 주십시오.");
+    if(!name.value) return alert("이름을 입력해 주십시오.");
+    if(!description.value) return alert("내용을 입력해 주십시오.");
+
     const req = {
-        id: id.value, //write.ejs 파일 안에 있는 id값에 const 변수에 담긴 객체를 보여줌.
-        content: content.value
+        //write.ejs 파일 안에 있는 id값에 const 변수에 담긴 객체를 보여줌.
+        description: description.value,
+        name: name.value,
+        title: title.value
     };   
 
     fetch("/write", {
