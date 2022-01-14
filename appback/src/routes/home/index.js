@@ -23,24 +23,6 @@ router.get("/main", function(req,res) {
 
 //localhost:5000/qna (qna 메뉴)
 router.get("/qna",ctr.output.qna);
-router.post('/qna', function(req, res) {
-    // 입력한 값 가져오기
-    var title = req.body.title;
-    var name = req.body.name;
-    var description = req.body.description;
-  
-    // 쿼리 작성
-    var sql = 'INSERT INTO question(name, title, description) values (?, ?, ?)';
-    var params = [questionInfo.id, questionInfo.name, questionInfo.description];
-  
-    // 쿼리 실행
-    db.query(sql, params, function(err, rows, fields) {
-      if(err)
-        console.log(err);
-        reject(`${err}`);
-        resolve({success: true});
-    });
-});
 
 //localhost:5000/write (글쓰기 페이지)
 router.get("/write", ctr.output.write);
