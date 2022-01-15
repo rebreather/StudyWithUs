@@ -45,6 +45,28 @@
             <button class="button" style=" cursor: pointer;" id="button" onclick="location.href='/write';"> Write </button>
           </div>
 
+          <table border='1'>
+            <colgroup>
+                <col width='70'><col width='200'><col width = '180'>
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>작성자</th>
+                    <th>글 제목</th>
+                    <th>날짜</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(i = 0; i < list.length; i++) { %>
+                <tr>
+                    <td><%=list[i].name %></td>
+                    <td><%=list[i].title %></td>
+                    <td><%=list[i].in_date %></td>
+                </tr>
+                <% } %>
+            </tbody>
+        </table boader='1'>
+
           <div class="wrapper"> <!--메뉴 밑 타임라인-->
             <ul id="timeline">
               <a href="#">
