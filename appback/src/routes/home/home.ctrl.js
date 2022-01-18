@@ -13,9 +13,9 @@ const output = {
     register: (req,res) => {
         res.render("home/register");
     },
-    qna: (req, res) => {
-        res.render("home/qna");
-    },
+    // qna: (req, res) => {
+    //     res.render("home/qna");
+    // },
     schedules: (req,res) => {
         res.render("home/schedules");
     },
