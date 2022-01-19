@@ -74,8 +74,8 @@
                         <td class="t_title" colspan="2"><%= item.description %></td>
                     </tr>
                     <tr>
-                        <td class="t_detail">작성 <%= item.in_date %>, <%= item.name %>, <%= item.rank %>순위</td>
-                        <td class="t_pass" onclick="location.href = '/main/changestat?stat=<%= item.status %>&id=<%= item.name %>'">
+                        <td class="t_detail">작성자: <%= item.name %>, <%= item.rank %>순위</td>
+                        <td class="t_pass" onclick="location.href = '/main/changestate?status=<%= item.status %>&id=<%= item.name %>'">
                             →
                         </td>
                     </tr>
@@ -90,8 +90,8 @@
                         <td class="t_title" colspan="2"><%= item.description %></td>
                     </tr>
                     <tr>
-                        <td class="t_detail">작성 <%= item.in_date %>, <%= item.name %>, <%= item.rank %>순위</td>
-                        <td class="t_del" onclick="location.href = '/main/deltodo/<%= item.name %>'">
+                        <td class="t_detail">작성자: <%= item.name %>, <%= item.rank %>순위</td>
+                        <td class="t_del" onclick="location.href = '/main/deltodo/&id=<%= item.name %>'">
                             ×
                         </td>
                     </tr>
@@ -113,6 +113,7 @@
                 <input type="text" name="name" placeholder="(15자까지)" maxlength='15' required />
                 <br><br>
                 <p class="addText">우선순위를 선택하세요.</p>
+                <br>
                 <div class="rank">
                     <label><input type="radio" name="rank" value="1" checked="checked">1순위</label>
                     <label><input type="radio" name="rank" value="2">2순위</label>
@@ -128,7 +129,7 @@
     </div>
 
         <!--투두리스트, 달력-->
-        <div class="main">
+        <!-- <div class="main">
             <div class="content-wrap">
                 <div class="content-left">
                     <div class="main-wrap">
@@ -175,7 +176,7 @@
             </div>
             </div>
     </div>
-    <script src="js/home/calendar.js"></script>
+    <script src="js/home/calendar.js"></script> -->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     </body>
