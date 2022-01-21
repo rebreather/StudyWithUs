@@ -1,12 +1,7 @@
 ﻿"use strict";
 
 const PORT = process.env.PORT || 5000; //5000번 포트에서 실행
-// const dbinfo = {
-//     host:"studylogin.clhijjaflnvt.ap-northeast-2.rds.amazonaws.com",
-//     user:"admin",
-//     password:"1q2w3e4r",
-//     database:"studylogin"
-// }
+
 
 //모듈
 const express = require("express");
