@@ -2,10 +2,10 @@
     <html lang="ko">
     <head>
         <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href='https://fonts.googleapis.com/css?family=Sintony:400,700&subset=latin-ext' rel='stylesheet' type='text/css'>
-        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet"> -->
         <link rel="stylesheet" href="/css/home/main.css">
         <link rel="stylesheet" href="/css/home/calendar.css">
         <link rel="stylesheet" href="/css/home/todolist.css">
@@ -13,7 +13,7 @@
         <title>Welcome</title>
     </head>
     <body>
-        <div class="container">
+        <div class="container"> <!--메뉴-->
                     <header>
                         <div style="text-align:center;margin-top:25px;font-weight:bold;texxxt-decoration:none;">
                             <a>Welcome</a></div>
@@ -31,9 +31,9 @@
                             <li>
                                 <a href="/schedules">Schedules</a>
                             </li>
-                            <li style="float:right;">
+                            <!-- <li style="float:right;">
                                 <a href="#">My Profile</a>
-                            </li>
+                            </li> -->
                             <li style="float:right;">
                                 <a href="/">Logout</a>
                             </li>
@@ -42,8 +42,9 @@
         </div>
         
         <!--투두리스트-->
-
-        <div class="add" onclick="addTodo()"><span>일 추가하기</span></div>
+        <br>
+        <div class="add" onclick="addTodo()"><span>투두리스트 추가하기</span></div>
+        <br>
         <div class="add" onclick="delete_all()" style="
         border-bottom: 2px solid #9FB8B4;"><span>전체 초기화</span></div>
         <!-- <div class="add" onclick="logout()" style="
@@ -59,7 +60,7 @@
                     </tr>
                     <tr>
                         <td class="t_detail">작성자: <%= item.name %>, <%= item.rank %>순위</td>
-                        <td class="t_pass" onclick="location.href = '/main/changestate?status=<%= item.status %>&id=<%= item.name %>'">
+                        <td class="t_pass" onclick="location.href = '/main/changestate?status=<%= item.status %>&id=<%= item.id %>'">
                             →
                         </td>
                     </tr>
@@ -75,7 +76,7 @@
                     </tr>
                     <tr>
                         <td class="t_detail">작성자: <%= item.name %>, <%= item.rank %>순위</td>
-                        <td class="t_pass" onclick="location.href = '/main/changestate?status=<%= item.status %>&id=<%= item.name %>'">
+                        <td class="t_pass" onclick="location.href = '/main/changestate?status=<%= item.status %>&id=<%= item.id %>'">
                             →
                         </td>
                     </tr>
@@ -91,7 +92,7 @@
                     </tr>
                     <tr>
                         <td class="t_detail">작성자: <%= item.name %>, <%= item.rank %>순위</td>
-                        <td class="t_del" onclick="location.href = '/main/deltodo/&id=<%= item.name %>'">
+                        <td class="t_del" onclick="location.href = '/main/deltodo/&id=<%= item.id %>'">
                             ×
                         </td>
                     </tr>

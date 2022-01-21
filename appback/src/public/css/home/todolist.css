@@ -7,9 +7,8 @@
     font-family: 'Sintony', sans-serif;
     font-size: 14px;
     font-weight: 400;
-    margin-top: 40px;
-    margin-right: 10px;
-    display: inline-block;
+    margin: auto;
+    display: block;
     text-align: center;
     color: #222;
     width: 150px;
@@ -30,7 +29,7 @@
     font-size: 18px;
     font-weight: 600;
     text-align: center;
-    margin: 3px 3px;
+    margin: auto;
     display: block;
     color: #222;
     width: 250px;
@@ -149,6 +148,7 @@ table{
     color: #555;
     padding: 0.5rem 0 0.5rem 1rem;
     border-bottom: 5px solid white;
+
 }
 
 .t_pass{

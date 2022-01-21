@@ -7,8 +7,9 @@ const url = require('url');
 const ctr = require("./home.ctrl"); 
 
 const db = require("../../config/db");
+const User = require("../../models/User");
 
-let logined_userid;
+const logined_userid = User.logined_userid;
 
 //localhost:5000/
 router.get("/", ctr.output.hello); // home.ctrl.js 파일에 있는 hello 함수 실행
@@ -23,9 +24,12 @@ router.post("/register", ctr.process.register);
 
 //localhost:5000/main (메인 화면)
 router.get("/main", function(req,res) {
-    var sql = 'SELECT * FROM `todolist` ORDER BY `rank` ASC';
+    console.log('main페이지 호출');
+
+        var sql = 'SELECT * FROM `todolist` WHERE `userid` = ? ORDER BY `rank` ASC';
         // todolist라는 테이블에서 rank와 id를 오름차순으로 정렬
-        db.query(sql, function (error, rows) {
+
+        db.query(sql, [logined_userid], function (error, rows) {
             if (error) {
                 console.log('error : ', error.message);
                 return;
@@ -52,7 +56,6 @@ router.get("/main", function(req,res) {
                         done_sign++;
                     }
                 }
-                console.log('투두리스트 데이터 성공적 분류완료');
                 res.render("home/main", {
                     list: rows,
                     todoList: rows_todo,
@@ -115,8 +118,8 @@ var addTodo = function (description, name, rank, status, callback) {
         name: name,
         rank: rank,
         // in_date: day,
+        //userid: logined_userid,
         status: 1
-        //userid: logined_userid
     };
 
     var exec = db.query('insert into todolist set ?', data, function (err, result) {
@@ -134,7 +137,7 @@ var addTodo = function (description, name, rank, status, callback) {
 
 //To-Do 데이터 전체삭제 라우터
 router.route('/main/deleteall').get(function (req, res) {
-    db.query('delete from todolist where id = ?;', [logined_userid], function (error, results) {
+    db.query('delete from todolist where userid = ?;', [logined_userid], function (error, results) {
         if (error) {
             console.dir(error);
             return;
@@ -148,10 +151,10 @@ router.route('/main/deleteall').get(function (req, res) {
 router.route('/main/changestate/').get(function (req, res) {
     var _url = req.url; //주소
     var queryData = url.parse(_url, true).query;
-    var name = queryData.id;
+    var id = queryData.id;
     var status = parseInt(queryData.status) + 1;
     //console.log(id + ', ' + status);
-    db.query('update todolist set status = ? where name = ?', [status, name], function (error, results) {
+    db.query('update todolist set status = ? where userid = ?', [status, logined_userid], function (error, results) {
         if (error) {
             console.dir(error);
         } else {
@@ -161,9 +164,9 @@ router.route('/main/changestate/').get(function (req, res) {
 });
 
 //To-Do 삭제 라우터
-router.route('/main/deltodo/:name').get(function (req, res) {
-    var name = req.params.id;
-    db.query('delete from todolist where name = ? and status = 3', [name], function (error, results) {
+router.route('/main/deltodo/:id').get(function (req, res) {
+    var id = req.params.id;
+    db.query('delete from todolist where userid = ? and status = 3', [logined_userid], function (error, results) {
         if (error) {
             console.dir(error);
         } else {
