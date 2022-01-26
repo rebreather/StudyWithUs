@@ -5,28 +5,64 @@ const router = express.Router();
 const url = require('url');
 
 const ctr = require("./home.ctrl"); 
-
+const passport = require('../../config/passport.js');
 const db = require("../../config/db");
-const User = require("../../models/User");
 
-const logined_userid = User.logined_userid;
+
 
 //localhost:5000/
 router.get("/", ctr.output.hello); // home.ctrl.js 파일에 있는 hello 함수 실행
 
 //localhost:5000/login
-router.get("/login", ctr.output.login); //home.crtl.js 파일 안에 있는 함수 사용
-router.post("/login", ctr.process.login); 
+//router.get("/login", ctr.output.login); //home.crtl.js 파일 안에 있는 함수 사용
+//router.post("/login", ctr.process.login); 
 
 //localhost:5000/register (회원 등록)
 router.get("/register", ctr.output.register);
 router.post("/register", ctr.process.register);
 
+router.get('/login', function(req,res){
+    res.render('auth/login');
+});
+  
+router.get('/logout', function(req, res) {
+    req.logout();
+    console.log("로그아웃");
+    req.session.save(function(){
+        res.redirect('/');
+    })
+});
+
+router.get('/google',
+    passport.authenticate('google', { scope: ['profile'] })
+);
+  
+router.get('/google/callback',
+    passport.authenticate('google'), authSuccess
+);
+  
+function authSuccess(req, res) {
+    res.redirect('/main');
+}
+
+//localhost:5000/qna (qna 메뉴)
+router.get('/qna', function (req, res) {
+    var sql = 'SELECT * FROM question';    
+    db.query(sql, function (err, rows, fields) {
+        if(err) console.log('query is not excuted. select fail...\n' + err);
+        else res.render("home/qna", {list : rows});
+    });
+});
+
+//localhost:5000/write (글쓰기 페이지)
+router.get("/write", ctr.output.write);
+router.post("/write", ctr.process.write);
+
 //localhost:5000/main (메인 화면)
 router.get("/main", function(req,res) {
     console.log('main페이지 호출');
-
-        var sql = 'SELECT * FROM `todolist` WHERE `userid` = ? ORDER BY `rank` ASC';
+        var logined_userid = req.user.id;
+        const sql = 'SELECT * FROM `todolist` WHERE `userid` = ? ORDER BY `rank` ASC';
         // todolist라는 테이블에서 rank와 id를 오름차순으로 정렬
 
         db.query(sql, [logined_userid], function (error, rows) {
@@ -60,7 +96,8 @@ router.get("/main", function(req,res) {
                     list: rows,
                     todoList: rows_todo,
                     doingList: rows_doing,
-                    doneList: rows_done
+                    doneList: rows_done,
+                    logined_user: req.user
                 });
             }
         });
@@ -70,12 +107,13 @@ router.get("/main", function(req,res) {
 router.route('/main/addtodo').post(function (req, res) {
     console.log('todo 추가 라우터 호출');
 
+    var logined_userid = req.user.id;
     var paramTitle = req.body.description; //투두
     var paramWho = req.body.name; //이름(누가~.)
     var paramRank = req.body.rank; //우선순위
     var paramStatus = req.body.status; //상태
 
-    addTodo(paramTitle, paramWho, paramRank, paramStatus,
+    addTodo(logined_userid, paramTitle, paramWho, paramRank, paramStatus,
         function (err, addedTodo) {
             if (err) {
                 console.error('추가 중 오류: ' + err.stack);
@@ -110,20 +148,18 @@ router.route('/main/addtodo').post(function (req, res) {
 });
 
 //To-Do 추가 함수 for To-do 추가 라우터
-var addTodo = function (description, name, rank, status, callback) {
+var addTodo = function (userid,description, name, rank, status, callback) {
     console.log('todo 등록 함수 호출됨');
 
     var data = {
         description: description,
         name: name,
         rank: rank,
-        // in_date: day,
-        //userid: logined_userid,
+        userid: logined_userid,
         status: 1
     };
 
     var exec = db.query('insert into todolist set ?', data, function (err, result) {
-        //console.log('실행 대상 SQL: ' + exec.sql);
 
         if (err) {
             console.log('SQL 실행 오류 발생');
@@ -174,20 +210,6 @@ router.route('/main/deltodo/:id').get(function (req, res) {
         }
     });
 });
-
-
-//localhost:5000/qna (qna 메뉴)
-router.get('/qna', function (req, res) {
-    var sql = 'SELECT * FROM question';    
-    db.query(sql, function (err, rows, fields) {
-        if(err) console.log('query is not excuted. select fail...\n' + err);
-        else res.render("home/qna", {list : rows});
-    });
-});
-
-//localhost:5000/write (글쓰기 페이지)
-router.get("/write", ctr.output.write);
-router.post("/write", ctr.process.write);
 
 
 
