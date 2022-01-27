@@ -15,8 +15,8 @@
     <body>
         <div class="container"> <!--메뉴-->
                     <header>
-                        <div style="text-align:center;margin-top:25px;font-weight:bold;texxxt-decoration:none;">
-                            <a>Welcome</a></div>
+                        <div style="text-align:center;margin-top:25px;font-weight:bold;text-decoration:none;">
+                            <a>Welcome, <%= logined_user.displayName %> !</a></div>
                         <h2>StudyWithUs</h2>
                     </header>
 
@@ -34,8 +34,8 @@
                             <!-- <li style="float:right;">
                                 <a href="#">My Profile</a>
                             </li> -->
-                            <li style="float:right;">
-                                <a href="/">Logout</a>
+                            <li style="float:right;" onclick="logout()">
+                                <a>Logout</a>
                             </li>
                         </ul>
                     </nav>
@@ -47,8 +47,6 @@
         <br>
         <div class="add" onclick="delete_all()" style="
         border-bottom: 2px solid #9FB8B4;"><span>전체 초기화</span></div>
-        <!-- <div class="add" onclick="logout()" style="
-        border-bottom: 2px solid #f1b5ea;"><span>로그아웃</span></div> -->
 
         <div class="wrap_menu">
             <div class="sec_wrapper" id="todo_wrapper">
@@ -60,7 +58,7 @@
                     </tr>
                     <tr>
                         <td class="t_detail">작성자: <%= item.name %>, <%= item.rank %>순위</td>
-                        <td class="t_pass" onclick="location.href = '/main/changestate?status=<%= item.status %>&id=<%= item.id %>'">
+                        <td class="t_pass" onclick="location.href = '/main/changestate?status=<%= item.status %>&id=<%= item.userid %>'">
                             →
                         </td>
                     </tr>
@@ -76,7 +74,7 @@
                     </tr>
                     <tr>
                         <td class="t_detail">작성자: <%= item.name %>, <%= item.rank %>순위</td>
-                        <td class="t_pass" onclick="location.href = '/main/changestate?status=<%= item.status %>&id=<%= item.id %>'">
+                        <td class="t_pass" onclick="location.href = '/main/changestate?status=<%= item.status %>&id=<%= item.userid %>'">
                             →
                         </td>
                     </tr>
@@ -92,7 +90,7 @@
                     </tr>
                     <tr>
                         <td class="t_detail">작성자: <%= item.name %>, <%= item.rank %>순위</td>
-                        <td class="t_del" onclick="location.href = '/main/deltodo/&id=<%= item.id %>'">
+                        <td class="t_del" onclick="location.href = '/main/deltodo/&id=<%= item.userid %>'">
                             ×
                         </td>
                     </tr>
@@ -128,57 +126,6 @@
             </form>
         </div>
     </div>
-
-        <!--투두리스트, 달력-->
-        <!-- <div class="main">
-            <div class="content-wrap">
-                <div class="content-left">
-                    <div class="main-wrap">
-                        <div id="main-day" class="main-day"></div>
-                        <div id="main-date" class="main-date"></div>
-                    </div>
-                    <div class="todo-wrap">
-                        <div class="todo-title">Todo List</div>
-                        <div class="input-wrap">
-                            <input type="text" placeholder="please write here!!" id="input-box" class="input-box">
-                            <button type="button" id="input-data" class="input-data">입력</button>
-                            <div id="input-list" class="input-list"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="content-right">
-                <table id="calendar" align="center">
-                <thead>
-                    <tr class="btn-wrap clearfix">
-                    <td>
-                        <label id="prev">
-                            &#60;
-                        </label>
-                    </td>
-                    <td align="center" id="current-year-month" colspan="5"></td>
-                    <td>
-                        <label id="next">
-                            &#62;
-                        </label>
-                    </td>
-                    </tr>
-                    <tr>
-                        <td class = "sun" align="center">Sun</td>
-                        <td align="center">Mon</td>
-                        <td align="center">Tue</td>
-                        <td align="center">Wed</td>
-                        <td align="center">Thu</td>
-                        <td align="center">Fri</td>
-                        <td class= "sat" align="center">Sat</td>
-                    </tr>
-                </thead>
-                <tbody id="calendar-body" class="calendar-body"></tbody>
-                </table>
-            </div>
-            </div>
-    </div>
-    <script src="js/home/calendar.js"></script> -->
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     </body>
     </html>

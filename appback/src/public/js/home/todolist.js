@@ -23,8 +23,8 @@ function delete_all() {
     else return;
 }
 
-// function logout() {
-//     if (confirm("로그아웃 하시겠습니까?") == true) {
-//         document.location.href = "/main/logout";
-//     } else return;
-// }
+function logout(req,res) {
+    if (confirm("로그아웃 하시겠습니까?") == true) {
+        document.location.href = "/logout";
+    } else return;
+}

@@ -60,47 +60,47 @@ router.post("/write", ctr.process.write);
 
 //localhost:5000/main (메인 화면)
 router.get("/main", function(req,res) {
-    console.log('main페이지 호출');
-        var logined_userid = req.user.id;
-        const sql = 'SELECT * FROM `todolist` WHERE `userid` = ? ORDER BY `rank` ASC';
-        // todolist라는 테이블에서 rank와 id를 오름차순으로 정렬
+    const sql = 'SELECT * FROM `todolist` WHERE `userid` = ? ORDER BY `rank` ASC';
+    var logined_userid = req.user.id;
 
-        db.query(sql, [logined_userid], function (error, rows) {
-            if (error) {
-                console.log('error : ', error.message);
-                return;
-            } else {
-                var rows_todo = [], //해야 하는 일
-                    rows_doing = [], //진행 중
-                    rows_done = []; //완료
+    db.query(sql, [logined_userid], function (error, rows) {
+        if (error) {
+            console.log('error : ', error.message);
+            return;
+        } else {
+            var rows_todo = [], //해야 하는 일
+                rows_doing = [], //진행 중
+                rows_done = []; //완료
 
-                var todo_sign = 0,
-                    doing_sign = 0,
-                    done_sign = 0;
+            var todo_sign = 0,
+                doing_sign = 0,
+                done_sign = 0;
 
-
-                //todolist 테이블의 행 만큼 for문 돌아감
-                for (var i = 0; i < rows.length; i++) {
-                    if (rows[i].status == 1) { //status의 상태가 1(할 일) 일때
-                        rows_todo[todo_sign] = rows[i]; //그 행은 1(할 일) 목록에 적재됨
-                        todo_sign++;
-                    } else if (rows[i].status == 2) {
-                        rows_doing[doing_sign] = rows[i];
-                        doing_sign++;
-                    } else if (rows[i].status == 3) {
-                        rows_done[done_sign] = rows[i];
-                        done_sign++;
-                    }
+            //todolist 테이블의 행 만큼 for문 돌아감
+            for (var i = 0; i < rows.length; i++) {
+                if (rows[i].status == 1) { //status의 상태가 1(할 일) 일때
+                    rows_todo[todo_sign] = rows[i]; //그 행은 1(할 일) 목록에 적재됨
+                    todo_sign++;
+                    console.log("할 일 목록에 들어감");
+                } else if (rows[i].status == 2) {
+                    rows_doing[doing_sign] = rows[i];
+                    doing_sign++;
+                    console.log("진행중 목록에 들어감");
+                } else if (rows[i].status == 3) {
+                    rows_done[done_sign] = rows[i];
+                    done_sign++;
+                    console.log("완료 목록에 들어감");
                 }
-                res.render("home/main", {
-                    list: rows,
-                    todoList: rows_todo,
-                    doingList: rows_doing,
-                    doneList: rows_done,
-                    logined_user: req.user
-                });
             }
-        });
+            res.render("home/main", {
+                list: rows,
+                todoList: rows_todo,
+                doingList: rows_doing,
+                doneList: rows_done,
+                logined_user: req.user
+            });
+        }
+    });
 });
 
 //To-Do 추가 라우터
@@ -112,6 +112,30 @@ router.route('/main/addtodo').post(function (req, res) {
     var paramWho = req.body.name; //이름(누가~.)
     var paramRank = req.body.rank; //우선순위
     var paramStatus = req.body.status; //상태
+
+    //To-Do 추가 함수 for To-do 추가 라우터
+var addTodo = function (userid,description, name, rank, status, callback) {
+    console.log('todo 등록 함수 호출됨');
+
+    var data = {
+        description: description,
+        name: name,
+        rank: rank,
+        userid: logined_userid,
+        status: 1
+    };
+
+    var exec = db.query('insert into todolist set ?', data, function (err, result) {
+
+        if (err) {
+            console.log('SQL 실행 오류 발생');
+            console.dir(err);
+            callback(err, null);
+            return;
+        }
+        callback(null, result);
+    });
+}
 
     addTodo(logined_userid, paramTitle, paramWho, paramRank, paramStatus,
         function (err, addedTodo) {
@@ -148,36 +172,38 @@ router.route('/main/addtodo').post(function (req, res) {
 });
 
 //To-Do 추가 함수 for To-do 추가 라우터
-var addTodo = function (userid,description, name, rank, status, callback) {
-    console.log('todo 등록 함수 호출됨');
+// var addTodo = function (userid,description, name, rank, status, callback) {
+//     console.log('todo 등록 함수 호출됨');
 
-    var data = {
-        description: description,
-        name: name,
-        rank: rank,
-        userid: logined_userid,
-        status: 1
-    };
+//     var data = {
+//         description: description,
+//         name: name,
+//         rank: rank,
+//         userid: logined_userid,
+//         status: 1
+//     };
 
-    var exec = db.query('insert into todolist set ?', data, function (err, result) {
+//     var exec = db.query('insert into todolist set ?', data, function (err, result) {
 
-        if (err) {
-            console.log('SQL 실행 오류 발생');
-            console.dir(err);
-            callback(err, null);
-            return;
-        }
-        callback(null, result);
-    });
-}
+//         if (err) {
+//             console.log('SQL 실행 오류 발생');
+//             console.dir(err);
+//             callback(err, null);
+//             return;
+//         }
+//         callback(null, result);
+//     });
+// }
 
 //To-Do 데이터 전체삭제 라우터
 router.route('/main/deleteall').get(function (req, res) {
+    var logined_userid = req.user.id;
     db.query('delete from todolist where userid = ?;', [logined_userid], function (error, results) {
         if (error) {
             console.dir(error);
             return;
         } else {
+            console.log("전체 삭제 됨");
             res.redirect('/main');
         }
     });
@@ -187,9 +213,9 @@ router.route('/main/deleteall').get(function (req, res) {
 router.route('/main/changestate/').get(function (req, res) {
     var _url = req.url; //주소
     var queryData = url.parse(_url, true).query;
-    var id = queryData.id;
+    var logined_userid = queryData.id;
     var status = parseInt(queryData.status) + 1;
-    //console.log(id + ', ' + status);
+
     db.query('update todolist set status = ? where userid = ?', [status, logined_userid], function (error, results) {
         if (error) {
             console.dir(error);
@@ -201,7 +227,7 @@ router.route('/main/changestate/').get(function (req, res) {
 
 //To-Do 삭제 라우터
 router.route('/main/deltodo/:id').get(function (req, res) {
-    var id = req.params.id;
+    var logined_userid = req.user.id;
     db.query('delete from todolist where userid = ? and status = 3', [logined_userid], function (error, results) {
         if (error) {
             console.dir(error);
