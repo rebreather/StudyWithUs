@@ -1,11 +1,11 @@
 ﻿"use strict";
 
 const User = require("../../models/User");
-// const UserStorage = require("../../models/UserStorage");
+const Question = require("../../models/Question");
 
 const output = {
     hello: (req, res) => {
-        res.render("home/index"); // ../../../appfront/studywithus/src/App
+        res.render("home/index"); 
     },
     login: (req, res) => {
         res.render("home/login");
@@ -13,8 +13,14 @@ const output = {
     register: (req,res) => {
         res.render("home/register");
     },
-    main: (req,res) => {
-        res.render("home/main");
+    // qna: (req, res) => {
+    //     res.render("home/qna");
+    // },
+    schedules: (req,res) => {
+        res.render("home/schedules");
+    },
+    write: (req,res) => {
+        res.render("home/write");
     }
 };
 
@@ -27,6 +33,11 @@ const process = {
     register: async(req, res) => {
         const user = new User(req.body); 
         const response = await user.register();
+        return res.json(response);
+    },
+    write: async (req, res) => {
+        const question = new Question(req.body);
+        const response = await question.submit();
         return res.json(response);
     }
 }

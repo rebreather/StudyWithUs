@@ -1,0 +1,193 @@
+﻿<!DOCTYPE html>
+  <html lang = "ko">
+  <head>
+    <title>QnA</title>
+        <!-- <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,700' rel='stylesheet' type='text/css'> -->
+        <meta charset="UTF-8">  
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <link href='https://fonts.googleapis.com/css?family=Sintony:400,700&subset=latin-ext' rel='stylesheet' type='text/css'>
+          <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+          <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css">
+          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"> -->
+          <link rel="stylesheet" href="/css/home/qna.css">
+  </head>	
+  <body>
+    <div class="container">
+          <header>
+              <div style="text-align:center;margin-top:25px;font-weight:bold;texxxt-decoration:none;">
+                  <a>Welcome</a>
+              </div>
+              <h2>StudyWithUs</h2>
+          </header>
+          <nav class="menu"> <!--메뉴-->
+              <ul>
+                  <li>
+                      <a href="/main">Home</a>
+                  </li>
+                  <li class="active">
+                      <a href="/qna">QnA</a>
+                  </li>
+                  <li>
+                      <a href="/schedules">Schedules</a>
+                  </li>
+                  <li style="float:right;">
+                      <a href="#">My Profile</a>
+                  </li>
+                  <li style="float:right;">
+                      <a href="/">Logout</a>
+                  </li>
+              </ul>
+          </nav>
+          <br><br>
+
+          <div class="write"> <!--질문 작성 버튼-->
+            <button class="button" style=" cursor: pointer;" id="button" onclick="location.href='/write';"> Write </button>
+          </div>
+
+          <table border='1'>
+            <colgroup>
+                <col width='70'><col width='200'><col width = '180'>
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>작성자</th>
+                    <th>글 제목</th>
+                    <th>날짜</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(i = 0; i < list.length; i++) { %>
+                <tr>
+                    <td><%=list[i].name %></td>
+                    <td><%=list[i].title %></td>
+                    <td><%=list[i].in_date %></td>
+                </tr>
+                <% } %>
+            </tbody>
+        </table boader='1'>
+
+          <div class="wrapper"> <!--메뉴 밑 타임라인-->
+            <ul id="timeline">
+              <a href="#">
+                <li class="listing clearfix"> <!--첫번째 글-->
+                  <div class="image_wrapper">
+                    <img src="https://lh3.ggpht.com/lSLM0xhCA1RZOwaQcjhlwmsvaIQYaP3c5qbDKCgLALhydrgExnaSKZdGa8S3YtRuVA=w300" alt="Twitter">
+                  </div>
+                  <div class="info">
+                    <span class="job_title">UX Designer</span>
+                    <span class="job_info">Twitter <span>&bull;</span> San Francisco <span>&bull;</span> March 1st</span>
+                  </div>
+                  <!-- <span class="job_type full_time">Full-Time</span> -->
+                </li>
+              </a>
+
+              <a href="#">
+                <li class="listing clearfix">
+                  <div class="image_wrapper">
+                    <img src="https://www.smartics.eu/confluence/download/attachments/33521886/piwik?version=1&modificationDate=1443174833000&api=v2" alt="Product Hunt">
+                  </div>
+                  <div class="info">
+                    <span class="job_title">Product Designer</span>
+                    <span class="job_info">Product Hunt <span>&bull;</span> San Francisco <span>&bull;</span> March 1st</span>
+                  </div>
+                  <!-- <span class="job_type full_time">Full-Time</span> -->
+                </li>
+              </a>
+
+              <li class="listing clearfix">
+                <div class="image_wrapper">
+                  <img src="http://icons.iconarchive.com/icons/danleech/simple/1024/dribbble-icon.png" alt="Dribbble">
+                </div>
+                <div class="info">
+                  <span class="job_title">Senior Rails Dev</span>
+                  <span class="job_info">Dribbble <span>&bull;</span> San Francisco <span>&bull;</span> March 1st</span>
+                </div>
+                <!-- <span class="job_type freelance">Freelance</span> -->
+              </li>
+
+              <li class="listing clearfix"> <!--게시글 사이의 줄-->
+                <div class="image_wrapper">
+                  <img src="https://www.digitalartsonline.co.uk/cmsdata/features/3626921/medium-m-color-688.png" alt="Medium">
+                </div>
+                <div class="info">
+                  <span class="job_title">Front-End Engineer</span>
+                  <span class="job_info">Medium <span>&bull;</span> San Francisco <span>&bull;</span> March 1st</span>
+                </div>
+                <!-- <span class="job_type contract">Contract</span> -->
+              </li>
+
+              <li class="listing clearfix">
+                <div class="image_wrapper">
+                  <!-- <img src="http://icons.iconarchive.com/icons/danleech/simple/1024/soundcloud-icon.png" alt="SoundCloud"> -->
+                </div>
+                <div class="info">
+                  <span class="job_title">Visual Designer</span>
+                  <span class="job_info">SoundCloud <span>&bull;</span> San Francisco <span>&bull;</span> March 1st</span>
+                </div>
+                <!-- <span class="job_type full_time">Full-Time</span> -->
+              </li>
+
+              <li class="listing clearfix">
+                <div class="image_wrapper">
+                  <img src="https://lh3.ggpht.com/lSLM0xhCA1RZOwaQcjhlwmsvaIQYaP3c5qbDKCgLALhydrgExnaSKZdGa8S3YtRuVA=w300" alt="Twitter">
+                </div>
+                <div class="info">
+                  <span class="job_title">UX Designer</span>
+                  <span class="job_info">Twitter <span>&bull;</span> San Francisco <span>&bull;</span> March 1st</span>
+                </div>
+                <!-- <span class="job_type part_time">Part-Time</span> -->
+              </li>
+
+              <li class="listing clearfix">
+                <div class="image_wrapper">
+                  <img src="http://icons.iconarchive.com/icons/danleech/simple/1024/dribbble-icon.png" alt="Dribbble">
+                </div>
+                <div class="info">
+                  <span class="job_title">Senior Rails Dev</span>
+                  <span class="job_info">Dribbble <span>&bull;</span> San Francisco <span>&bull;</span> March 1st</span>
+                </div>
+                <span class="job_type freelance">Freelance</span>
+              </li>
+
+              <li class="listing clearfix">
+                <div class="image_wrapper">
+                  <img src="https://www.digitalartsonline.co.uk/cmsdata/features/3626921/medium-m-color-688.png" alt="Medium">
+                </div>
+                <div class="info">
+                  <span class="job_title">Front-End Engineer</span>
+                  <span class="job_info">Medium <span>&bull;</span> San Francisco <span>&bull;</span> March 1st</span>
+                </div>
+                <span class="job_type contract">Contract</span>
+              </li>
+
+              <li class="listing clearfix">
+                <div class="image_wrapper">
+                  <img src="http://icons.iconarchive.com/icons/danleech/simple/1024/soundcloud-icon.png" alt="SoundCloud">
+                </div>
+                <div class="info">
+                  <span class="job_title">Visual Designer</span>
+                  <span class="job_info">SoundCloud <span>&bull;</span> San Francisco <span>&bull;</span> March 1st</span>
+                </div>
+                <span class="job_type full_time">Full-Time</span>
+              </li>
+
+              <li class="listing clearfix">
+                <div class="image_wrapper">
+                  <img src="https://lh3.ggpht.com/lSLM0xhCA1RZOwaQcjhlwmsvaIQYaP3c5qbDKCgLALhydrgExnaSKZdGa8S3YtRuVA=w300" alt="Twitter">
+                </div>
+                <div class="info">
+                  <span class="job_title">UX Designer</span>
+                  <span class="job_info">Twitter <span>&bull;</span> San Francisco <span>&bull;</span> March 1st</span>
+                </div>
+                <span class="job_type part_time">Part-Time</span>
+              </li>
+
+            </ul>
+            <!-- <div class="load_more">
+              <button class="button"> Load More </button>
+            </div> -->
+          </div>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  </body>
+  </html>
