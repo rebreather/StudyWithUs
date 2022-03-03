@@ -42,7 +42,7 @@ router.get('/google/callback',
 );
   
 function authSuccess(req, res) {
-    res.redirect('/main');
+    res.redirect("/main");
 }
 
 //localhost:5000/qna (qna 메뉴)
@@ -60,7 +60,7 @@ router.post("/write", ctr.process.write);
 
 //localhost:5000/main (메인 화면)
 router.get("/main", function(req,res) {
-    const sql = 'SELECT * FROM `todolist` WHERE `userid` = ? ORDER BY `rank` ASC';
+    const sql = 'SELECT * FROM `todolist` WHERE `userid` = ? ORDER BY `rank` ASC, `id` ASC;';
     var logined_userid = req.user.id;
 
     db.query(sql, [logined_userid], function (error, rows) {
@@ -77,7 +77,7 @@ router.get("/main", function(req,res) {
                 done_sign = 0;
 
             //todolist 테이블의 행 만큼 for문 돌아감
-            for (var i = 0; i < rows.length; i++) {
+            for (let i = 0; i < rows.length; i++) {
                 if (rows[i].status == 1) { //status의 상태가 1(할 일) 일때
                     rows_todo[todo_sign] = rows[i]; //그 행은 1(할 일) 목록에 적재됨
                     todo_sign++;
@@ -93,7 +93,6 @@ router.get("/main", function(req,res) {
                 }
             }
             res.render("home/main", {
-                list: rows,
                 todoList: rows_todo,
                 doingList: rows_doing,
                 doneList: rows_done,
